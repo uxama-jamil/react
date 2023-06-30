@@ -1,0 +1,25 @@
+.login-container{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .form{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        div{
+            display: flex;
+            flex-direction: column;
+            gap:5px
+            input{
+                padding: 5px;
+                border:1px solid grey
+            }
+        }
+        button{
+            padding:5px;
+            background-color: burlywood;
+            border: none;
+        }
+    }
+}

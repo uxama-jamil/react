@@ -1,11 +1,19 @@
-
+import {BrowserRouter as Router ,Routes,Route, Navigate,} from  'react-router-dom'
 import './App.scss';
+import  Login  from './Login/login';
+import  Main  from './Main/main';
 
 function App() {
   return (
-    <div className="App">
-     Hello World
-    </div>
+    <Router>
+      <Routes>
+        
+      <Route path="/login" element={<Login/>} />
+      <Route path="/main" element={<Main/>} />
+      <Route path='*' element={<Navigate to='/login'/>}/>
+      </Routes>
+
+    </Router>
   );
 }
 
