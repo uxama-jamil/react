@@ -2,8 +2,10 @@ import React, { useState } from 'react'
 import './login.scss'
 import { useNavigate } from 'react-router-dom'
 import FormInput from '../formInput/formInput'
+import { useDataContext } from '../Context/context'
 
 const Login = () => {
+    const data = useDataContext()
     const navigate = useNavigate()
     const [formValue,setFormValue]=useState({username:'',password:''})
     const setValue = (v)=>{
@@ -13,6 +15,7 @@ const Login = () => {
     }
     
     const check = ()=>{
+        console.log(data)
         return formValue.password === "07b070ee" ? navigate('/main',{state:{username:formValue.username,password:formValue.password}}) : null
     }
     const input =[

@@ -5,7 +5,7 @@ const FormInput = (prop) => {
   return (
     <>
         <div>
-            <label htmlFor="username">{label}</label>
+            <label htmlFor="">{label}</label>
             <input {...all} onChange={(e)=>setValue(e)}  />
         </div>
     </>
