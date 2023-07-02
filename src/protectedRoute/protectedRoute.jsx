@@ -2,7 +2,7 @@ import React from 'react'
 import { Navigate, Outlet } from 'react-router-dom'
 
 const ProtectedRoute = () => {
-    const isUserAuthentic = false
+    const isUserAuthentic = true
   return (
     <>
         {isUserAuthentic ? <Outlet/> : <Navigate to='/login'/>}
