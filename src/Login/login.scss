@@ -15,7 +15,13 @@
                 padding: 5px;
                 border:1px solid grey
             }
-        } .navs{
+        }
+        .error{
+            color:red;
+            font-weight: 500;
+        }
+        
+        .navs{
             display: flex;
             flex-direction: row;
             justify-content: space-between;

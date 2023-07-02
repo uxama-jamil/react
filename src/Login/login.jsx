@@ -10,8 +10,9 @@ const Login = () => {
     const navigate = useNavigate()
     const [formValue,setFormValue]=useState({username:'',password:'',email:""})
     const [register,setRegister]=useState(false)
+    const [err,setError]=useState("")
     const regUrl = "http://8.222.193.61/authentication/reigster/"
-    const loginUrl ="http://8.222.193.61/authentication/dj-rest-auth/login/"
+    const loginUrl ="http://8.222.193.61/authentication/login/"
     const setValue = (v)=>{
         setFormValue({
             ...formValue,[v.target.name]:v.target.value
@@ -19,11 +20,34 @@ const Login = () => {
     }
     
     const check = (e)=>{
-        console.log("first")
-        // e.preventDefault()
+        setError("")
+
+        e.preventDefault()
         // navigate("/main",{state:{username:"lily Zoha"}})
 
-        // const res = axios.post(regUrl,formValue).then(res=>console.log(res)).catch(err=>console.log(err))
+        if(register){
+            axios.post(regUrl,formValue).then(res=>{
+        if(res?.data?.status){
+            setRegister(false)
+        }else{
+            res?.data?.error && setError(res?.data?.error)
+        }
+        }).catch(err=>{
+            setError(err?.response?.data?.message)
+        })}else{
+            axios.post(loginUrl,{username:formValue.username,password:formValue.password}).then((logRes)=>{
+                data.updateData({username:formValue.username})
+                // logRes.data.status && navigate('/main')
+                console.log(logRes,data)
+
+
+                
+            }).catch((logErr)=>{
+            setError(logErr?.response?.data?.message)
+
+                console.log(logErr)
+            })
+        }
         // axios.get("https://jsonplaceholder.typicode.com/posts").then(res=>console.log(res))
         
         // return formValue.password === "07b070ee" ? navigate('/main',{state:{username:formValue.username,password:formValue.password}}) : null
@@ -64,6 +88,7 @@ const Login = () => {
                     </>
                 })}
                 {register && <FormInput key={input[input.length-1].id} {...input[input.length-1]} value={formValue[input[input.length-1].name]} setValue={setValue} />}
+                {err && <span className='error'>{err}</span>}
                 <div className="navs">
                 <span onClick={()=>handleRegister()}>{ register? "Back" :  "Register"}</span>
 
